@@ -1,0 +1,2 @@
+window.renderStatistics = function(ctx) {
+  }
