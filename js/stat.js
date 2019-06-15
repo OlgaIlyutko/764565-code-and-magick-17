@@ -14,12 +14,12 @@ var maxColumnHeight = 150;
 var columnsResultHeight = [];
 
 
-window.renderCloud = function (ctx, xCloud, yCloud, CLOUD_WIDTH, CLOUD_HEIGHT, cloudColor) {
+var renderCloud = function (ctx, x, y, cloudWidth, cloudHeight, cloudColor) {
   ctx.fillStyle = cloudColor;
-  ctx.fillRect(xCloud, yCloud, CLOUD_WIDTH, CLOUD_HEIGHT);
+  ctx.fillRect(x, y, cloudWidth, cloudHeight);
 };
 
-window.renderWinMessage = function (ctx, xText, yText, winMessage) {
+var renderWinMessage = function (ctx, xText, yText, winMessage) {
   ctx.fillStyle = '#000000';
   ctx.font = ('16px PT Mono');
   ctx.textBaseline = 'hanging';
