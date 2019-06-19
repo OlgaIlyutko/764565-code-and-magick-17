@@ -2,15 +2,15 @@
 
 var CLOUD_WIDTH = 420;
 var CLOUD_HEIGHT = 270;
-var xCloud = 100;
-var yCloud = 10;
-var shadow = 10;
+var X_CLOUD = 100;
+var Y_CLOUD = 10;
+var SHADOW = 10;
 
-var columnsDist = 50;
-var columnWidth = 40;
-var maxColumnX = 140;
-var maxColumnY = 90;
-var maxColumnHeight = 150;
+var COLUMN_DIST = 50;
+var COLUMN_WIDTH = 40;
+var MAX_COLUMN_X = 140;
+var MAX_COLUMN_Y = 90;
+var MAX_COLUMN_HEIGHT = 150;
 var columnsResultHeight = [];
 
 
@@ -28,8 +28,8 @@ var renderWinMessage = function (ctx, xText, yText, winMessage) {
 
 window.renderStatistics = function (ctx, names, times) {
 
-  renderCloud(ctx, xCloud + shadow, yCloud + shadow, CLOUD_WIDTH, CLOUD_HEIGHT, 'rgba(0, 0, 0, 0.7)');
-  renderCloud(ctx, xCloud, yCloud, CLOUD_WIDTH, CLOUD_HEIGHT, '#ffffff');
+  renderCloud(ctx, X_CLOUD + SHADOW, Y_CLOUD + SHADOW, CLOUD_WIDTH, CLOUD_HEIGHT, 'rgba(0, 0, 0, 0.7)');
+  renderCloud(ctx, X_CLOUD, Y_CLOUD, CLOUD_WIDTH, CLOUD_HEIGHT, '#ffffff');
   renderWinMessage(ctx, 120, 30, 'Ура вы победили!');
   renderWinMessage(ctx, 120, 50, 'Список результатов:');
 
@@ -42,21 +42,21 @@ window.renderStatistics = function (ctx, names, times) {
   }
 
   for (var j = 0; j < times.length; j++) {
-    columnsResultHeight[j] = Math.round(times[j]) * maxColumnHeight / maxColumnPoint;
+    columnsResultHeight[j] = Math.round(times[j]) * MAX_COLUMN_HEIGHT / maxColumnPoint;
 
     ctx.fillStyle = '#000000';
     ctx.font = ('16px PT Mono');
     ctx.textBaseline = 'hanging';
-    ctx.fillText(Math.round(times[j]), maxColumnX + (columnsDist + columnWidth) * j, maxColumnHeight - columnsResultHeight[j] + maxColumnY - 20);
+    ctx.fillText(Math.round(times[j]), MAX_COLUMN_X + (COLUMN_DIST + COLUMN_WIDTH) * j, MAX_COLUMN_HEIGHT - columnsResultHeight[j] + MAX_COLUMN_Y - 20);
 
     ctx.fillStyle = 'rgba(0, 0, 255,' + Math.random() + ')';
     if (names[j] === 'Вы') {
       ctx.fillStyle = 'red';
     }
 
-    ctx.fillRect(maxColumnX + (columnsDist + columnWidth) * j, maxColumnHeight - columnsResultHeight[j] + maxColumnY, columnWidth, columnsResultHeight[j]);
+    ctx.fillRect(MAX_COLUMN_X + (COLUMN_DIST + COLUMN_WIDTH) * j, MAX_COLUMN_HEIGHT - columnsResultHeight[j] + MAX_COLUMN_Y, COLUMN_WIDTH, columnsResultHeight[j]);
 
     ctx.fillStyle = '#000000';
-    ctx.fillText(names[j], maxColumnX + (columnsDist + columnWidth) * j, 250);
+    ctx.fillText(names[j], MAX_COLUMN_X + (COLUMN_DIST + COLUMN_WIDTH) * j, 250);
   }
 };
