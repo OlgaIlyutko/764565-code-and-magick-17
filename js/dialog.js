@@ -1,6 +1,11 @@
 'use strict';
-var ESC_KEYCODE = 27;
-var ENTER_KEYCODE = 13;
+(function () {
+
+var COATS_COLOR; 
+var EYES_COLOR;
+var NAMES;
+var SURNAMES;
+var FIREBALLS_COLOR;
 var setup = document.querySelector('.setup');
 var setupOpen = document.querySelector('.setup-open');
 var setupClose = setup.querySelector('.setup-close');
@@ -10,9 +15,7 @@ var onPopupEscPress = function (evt) {
   if (userNameInput === document.activeElement) {
     return evt;
   } else {
-    if (evt.keyCode === ESC_KEYCODE) {
-      closePopup();
-    }
+    window.util.isEscEvent(evt, closePopup);
   }
 };
 
@@ -34,9 +37,7 @@ setupOpen.addEventListener('click', function () {
 });
 
 setupOpen.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) {
-    openPopup();
-  }
+  window.util.isEnterEvent(evt, openPopup);
 });
 
 setupClose.addEventListener('click', function () {
@@ -44,9 +45,7 @@ setupClose.addEventListener('click', function () {
 });
 
 setupClose.addEventListener('keydown', function (evt) {
-  if (evt.keyCode === ENTER_KEYCODE) {
-    closePopup();
-  }
+  window.util.isEnterEvent(evt, closePopup);
 });
 
 var mainWizardCoatImg = setup.querySelector('.setup-wizard .wizard-coat');
@@ -58,19 +57,19 @@ var mainWizardEyesInput = setup.querySelector('[name=eyes-color]');
 var mainWizardFireballInput = setup.querySelector('[name=fireball-color]');
 
 mainWizardCoatImg.addEventListener('click', function () {
-  var newCoatsColor = COATS_COLOR[randomHeroData(COATS_COLOR)];
+  var newCoatsColor = window.randomDataHeroes(COATS_COLOR);
   mainWizardCoatImg.style.fill = newCoatsColor;
   mainWizardCoatInput.value = newCoatsColor;
 });
 
 mainWizardEyesImg.addEventListener('click', function () {
-  var newEyesColor = EYES_COLOR[randomHeroData(EYES_COLOR)];
+  var newEyesColor = window.randomDataHeroes(EYES_COLOR);
   mainWizardEyesImg.style.fill = newEyesColor;
   mainWizardEyesInput.value = newEyesColor;
 });
 
 mainWizardFireballImg.addEventListener('click', function () {
-  var newFireballsColor = FIREBALLS_COLOR[randomHeroData(FIREBALLS_COLOR)];
+  var newFireballsColor = window.randomDataHeroes(FIREBALLS_COLOR);
   mainWizardFireballImg.style.background = newFireballsColor;
   mainWizardFireballInput.value = newFireballsColor;
 });
@@ -116,3 +115,4 @@ icon.addEventListener('mousedown', function (evt) {
   document.addEventListener('mousemove', onMouseMove);
   document.addEventListener('mouseup', onMouseUp);
 });
+})();
