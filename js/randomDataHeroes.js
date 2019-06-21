@@ -28,19 +28,20 @@
     return FIREBALLS_COLOR[randomHeroData(NAMES)]
   }
   
-  window.util = {
-    getName: getRandomName,
-    getCoat: getRandomCoat,
-    getEyes: getRandomEyes,
-    getFireball: getRandomFireball,
-  }
-  
-  window.setColorHeroes = function (element, inputElement, color) {
+   var setRandomColorHeroes = function (element, inputElement, color) {
     inputElement.value = color;    
     if (element.tagName.toLowerCase() === 'div') {
       element.style.backgroundColor = color;
     } else {
       element.style.fill = color;
     }  
-  }  
+  } 
+   
+  window.randomDataHeroes = {
+    getName: getRandomName,
+    getCoat: getRandomCoat,
+    getEyes: getRandomEyes,
+    getFireball: getRandomFireball,
+    setColorHeroes: setRandomColorHeroes 
+  }
 })();

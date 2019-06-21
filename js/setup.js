@@ -13,9 +13,9 @@ var heroes = [];
 
 for (var j = 0; j < HEROES_COUNT; j++) {
   heroes[j] = {
-    name: window.util.getName(),
-    coatColor: window.util.getCoat(),
-    eyesColor: window.util.getEyes()
+    name: window.randomDataHeroes.getName(),
+    coatColor: window.randomDataHeroes.getCoat(),
+    eyesColor: window.randomDataHeroes.getEyes()
    }
 }
 
