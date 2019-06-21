@@ -12,20 +12,27 @@
     return Math.floor(Math.random() * (heroData.length - 1));
   };
   
-  window.getRandomName = function () {
+  var getRandomName = function () {
     return NAMES[randomHeroData(NAMES)] + ' ' + SURNAMES[randomHeroData(SURNAMES)]
   }
    
-  window.getRandomCoat = function () {
+  var getRandomCoat = function () {
     return COATS_COLOR[randomHeroData(COATS_COLOR)]
   }
   
-  window.getRandomEyes = function () {
+  var getRandomEyes = function () {
     return EYES_COLOR[randomHeroData(EYES_COLOR)]
   }
     
-  window.getRandomFireball = function () {
+  var getRandomFireball = function () {
     return FIREBALLS_COLOR[randomHeroData(NAMES)]
+  }
+  
+  window.util = {
+    getName: getRandomName,
+    getCoat: getRandomCoat,
+    getEyes: getRandomEyes,
+    getFireball: getRandomFireball,
   }
   
   window.setColorHeroes = function (element, inputElement, color) {
