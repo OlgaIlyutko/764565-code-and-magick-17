@@ -57,22 +57,20 @@ var mainWizardEyesInput = setup.querySelector('[name=eyes-color]');
 var mainWizardFireballInput = setup.querySelector('[name=fireball-color]');
 
 mainWizardCoatImg.addEventListener('click', function () {
-  var newCoatsColor = window.randomDataHeroes(COATS_COLOR);
-  mainWizardCoatImg.style.fill = newCoatsColor;
-  mainWizardCoatInput.value = newCoatsColor;
+  var newColorCoat = window.util.getCoat();
+  setColorHeroes(mainWizardCoatImg, mainWizardCoatInput, newColorCoat);
 });
 
 mainWizardEyesImg.addEventListener('click', function () {
-  var newEyesColor = window.randomDataHeroes(EYES_COLOR);
-  mainWizardEyesImg.style.fill = newEyesColor;
-  mainWizardEyesInput.value = newEyesColor;
+  var newColorEyes = window.util.getEyes();
+  setColorHeroes(mainWizardEyesImg, mainWizardEyesInput, newColorEyes);
 });
 
 mainWizardFireballImg.addEventListener('click', function () {
-  var newFireballsColor = window.randomDataHeroes(FIREBALLS_COLOR);
-  mainWizardFireballImg.style.background = newFireballsColor;
-  mainWizardFireballInput.value = newFireballsColor;
+  var newColorFireball = window.util.getFireball();
+  setColorHeroes(mainWizardFireballImg, mainWizardFireballInput, newColorFireball);
 });
+  
 
 var icon = setup.querySelector('.upload');
 

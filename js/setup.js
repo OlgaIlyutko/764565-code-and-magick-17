@@ -3,11 +3,6 @@
 (function () {
 var setup = document.querySelector('.setup');
 var HEROES_COUNT = 4;
-var COATS_COLOR; 
-var EYES_COLOR;
-var NAMES;
-var SURNAMES;
-var FIREBALLS_COLOR;
   
 var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
 var similarListElement = document.querySelector('.setup-similar-list');
@@ -18,10 +13,10 @@ var heroes = [];
 
 for (var j = 0; j < HEROES_COUNT; j++) {
   heroes[j] = {
-    name: window.randomDataHeroes(NAMES) + ' ' + window.randomDataHeroes(SURNAMES),
-    coatColor: window.randomDataHeroes(COATS_COLOR),
-    eyesColor: window.randomDataHeroes(EYES_COLOR)
-  };
+    name: window.util.getName(),
+    coatColor: window.util.getCoat(),
+    eyesColor: window.util.getEyes()
+   }
 }
 
 var heroesView = function (hero) {
