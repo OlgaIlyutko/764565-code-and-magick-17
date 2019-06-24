@@ -1,37 +1,44 @@
 'use strict';
 
 (function () {
-var setup = document.querySelector('.setup');
-var HEROES_COUNT = 4;
+  var setup = document.querySelector('.setup');
+  var HEROES_COUNT = 4;
+
+  var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
+  var similarListElement = document.querySelector('.setup-similar-list');
+
+  var heroesView = function (hero) {
+    var heroElement = similarWizardTemplate.cloneNode(true);
+    heroElement.querySelector('.setup-similar-label').textContent = hero.name;
+    heroElement.querySelector('.wizard-coat').style.fill = hero.colorCoat;
+    heroElement.querySelector('.wizard-eyes').style.fill = hero.colorEyes;
+    return heroElement;
+  };
+
+  var onLoad = function (heroes) {
+    var fragment = document.createDocumentFragment();
+    for (var i = 0; i < HEROES_COUNT; i++) {
+      fragment.appendChild(heroesView(heroes[i]));
+    }
+    similarListElement.appendChild(fragment);
+    setup.querySelector('.setup-similar').classList.remove('hidden');
+  };
+
+   
+  var onError = function (message) {
+    console.error(message);
+  };
   
-var similarWizardTemplate = document.querySelector('#similar-wizard-template').content.querySelector('.setup-similar-item');
-var similarListElement = document.querySelector('.setup-similar-list');
-
-
-var heroes = [];
-
-
-for (var j = 0; j < HEROES_COUNT; j++) {
-  heroes[j] = {
-    name: window.randomDataHeroes.getName(),
-    coatColor: window.randomDataHeroes.getCoat(),
-    eyesColor: window.randomDataHeroes.getEyes()
-   }
-}
-
-var heroesView = function (hero) {
-  hero = similarWizardTemplate.cloneNode(true);
-  hero.querySelector('.setup-similar-label').textContent = heroes[i].name;
-  hero.querySelector('.wizard-coat').style.fill = heroes[i].coatColor;
-  hero.querySelector('.wizard-eyes').style.fill = heroes[i].eyesColor;
-  return hero;
-};
-
-var fragment = document.createDocumentFragment();
-for (var i = 0; i < heroes.length; i++) {
-  fragment.appendChild(heroesView(heroes[i]));
-}
-similarListElement.appendChild(fragment);
-
-setup.querySelector('.setup-similar').classList.remove('hidden');
+  var onSave = function (response) {
+    setup.classList.add('hidden');
+  };
+  
+  var form = setup.querySelector('.setup-wizard-form');
+  form.addEventListener('submit', function (evt) {
+     window.backend.save(new FormData(form), onSave, onError);
+  evt.preventDefault();
+  });
+  
+  window.backend.load(onLoad, onError);
+  
 })();
