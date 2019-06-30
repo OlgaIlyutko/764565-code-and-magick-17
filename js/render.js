@@ -13,7 +13,7 @@
     heroElement.querySelector('.wizard-eyes').style.fill = hero.colorEyes;
     return heroElement;
   };
- 
+
 
   var renderHeroes = function (heroes) {
     var takeNumber = heroes.length > HEROES_COUNT ? HEROES_COUNT : heroes.length;
@@ -24,7 +24,7 @@
 
     setup.querySelector('.setup-similar').classList.remove('hidden');
   };
-    
+
   var mainWizardCoatImg = setup.querySelector('.setup-wizard .wizard-coat');
   var mainWizardEyesImg = setup.querySelector('.setup-wizard .wizard-eyes');
   var mainWizardFireballImg = setup.querySelector('.setup-fireball-wrap');
@@ -32,11 +32,11 @@
   var mainWizardCoatInput = setup.querySelector('[name=coat-color]');
   var mainWizardEyesInput = setup.querySelector('[name=eyes-color]');
   var mainWizardFireballInput = setup.querySelector('[name=fireball-color]');
-  
+
   var heroes = [];
-  var colorCoat = mainWizardCoatInput.value;  
+  var colorCoat = mainWizardCoatInput.value;
   var colorEyes = mainWizardEyesInput.value;
-  
+
   mainWizardCoatImg.addEventListener('click', function () {
     var newColorCoat = window.randomDataHeroes.getCoat();
     window.randomDataHeroes.setColorHeroes(mainWizardCoatImg, mainWizardCoatInput, newColorCoat);
@@ -44,7 +44,7 @@
     window.debounce(updateHeroes);
   });
 
-  
+
   mainWizardEyesImg.addEventListener('click', function () {
     var newColorEyes = window.randomDataHeroes.getEyes();
     window.randomDataHeroes.setColorHeroes(mainWizardEyesImg, mainWizardEyesInput, newColorEyes);
@@ -66,8 +66,8 @@
       rank += 1;
     }
     return rank;
-  };  
-  
+  };
+
   var namesComparator = function (left, right) {
     if (left > right) {
       return 1;
@@ -76,8 +76,8 @@
     } else {
       return 0;
     }
-  }
-  
+  };
+
   var updateHeroes = function () {
     renderHeroes(heroes.sort(function (left, right) {
       var rankDiff = getRank(right) - getRank(left);
@@ -86,31 +86,28 @@
       }
       return rankDiff;
     }));
-    
+
   };
-  
-  
+
   var onLoad = function (data) {
     heroes = data;
     updateHeroes(heroes);
   };
-   
+
   var onError = function (message) {
-    console.error(message);
+    console.log(message);
   };
-  
-  var onSave = function (response) {
+
+  var onSave = function () {
     setup.classList.add('hidden');
   };
-  
+
   var form = setup.querySelector('.setup-wizard-form');
   form.addEventListener('submit', function (evt) {
-     window.backend.save(new FormData(form), onSave, onError);
-  evt.preventDefault();
+    window.backend.save(new FormData(form), onSave, onError);
+    evt.preventDefault();
   });
-  
+
   window.backend.load(onLoad, onError);
-  
-  
- 
+
 })();

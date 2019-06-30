@@ -1,7 +1,7 @@
 'use strict';
 (function () {
 
-  var COATS_COLOR; 
+  var COATS_COLOR;
   var EYES_COLOR;
   var NAMES;
   var SURNAMES;
@@ -48,9 +48,6 @@
     window.util.isEnterEvent(evt, closePopup);
   });
 
-
-
-
   var icon = setup.querySelector('.upload');
 
   icon.addEventListener('mousedown', function (evt) {
@@ -80,8 +77,8 @@
     var onMouseUp = function (upEvt) {
       upEvt.preventDefault();
       if (dragged) {
-        var onClickPreventDefault = function (evt) {
-          evt.preventDefault();
+        var onClickPreventDefault = function (dragEvt) {
+          dragEvt.preventDefault();
           icon.removeEventListener('click', onClickPreventDefault);
         };
         icon.addEventListener('click', onClickPreventDefault);
